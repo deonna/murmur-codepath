@@ -18,6 +18,7 @@ import com.example.murmurcodepath.databinding.MrTagBinding;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.util.Util;
 
 import java.util.Set;
 
@@ -28,6 +29,9 @@ public class MrMainActivity extends AppCompatActivity {
     @Nullable private AnimatedVectorDrawableCompat removeFromCollection;
 
     @Nullable private SimpleExoPlayer player;
+    private boolean playWhenReady = true;
+    private int currentWindow = 0;
+    private long playbackPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,31 +119,42 @@ public class MrMainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.SDK_INT > 23) {
+            initializePlayer();
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        initializePlayer();
+        if ((Util.SDK_INT <= 23 || player == null)) {
+            initializePlayer();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        releasePlayer();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        initializePlayer();
+        if (Util.SDK_INT <= 23) {
+            releasePlayer();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        releasePlayer();
+        if (Util.SDK_INT > 23) {
+            releasePlayer();
+        }
     }
 
     private void releasePlayer() {
         if (player != null) {
+            playbackPosition = player.getCurrentPosition();
+            currentWindow = player.getCurrentWindowIndex();
+            playWhenReady = player.getPlayWhenReady();
             player.release();
             player = null;
         }
@@ -150,8 +165,12 @@ public class MrMainActivity extends AppCompatActivity {
 
         updateViewsFromAudio(Audio.getTestAudio());
 
-        player.seekTo(0, 0);
-        player.setPlayWhenReady(true);
+        MediaItem mediaItem = MediaItem.fromUri("https://dl.espressif" +
+            ".com/dl/audio/ff-16b-1c-44100hz.m4a");
+        player.setMediaItem(mediaItem);
+
+        player.setPlayWhenReady(playWhenReady);
+        player.seekTo(currentWindow, playbackPosition);
         player.prepare();
     }
 }
