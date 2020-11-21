@@ -33,6 +33,8 @@ public class MrMainActivity extends AppCompatActivity {
     private int currentWindow = 0;
     private long playbackPosition = 0;
 
+    private boolean showingAddToCollection = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +51,28 @@ public class MrMainActivity extends AppCompatActivity {
             this,
             R.drawable.mr_avd_remove_from_collection
         );
+
+        binding.getRoot().postDelayed(new Runnable() {
+            @Override public void run() {
+                updateViewsFromAudio(Audio.getTestAudio());
+            }
+        }, 500);
     }
 
     private void updateViewsFromAudio(Audio audio) {
         player.setMediaItem(MediaItem.fromUri(audio.getPlayableAudioLink()));
 
+        ViewExtensions.fadeOut(binding.mrProgressSpinner);
         ViewExtensions.fadeIn(binding.mrAudioViewStub);
 
         MrAudioViewBinding audioViewBinding =
             MrAudioViewBinding.bind(findViewById(R.id.mr_audio_view));
+
+        MediaItem mediaItem = MediaItem.fromUri(audio.getPlayableAudioLink());
+        player.setMediaItem(mediaItem);
+        player.setPlayWhenReady(playWhenReady);
+        player.seekTo(currentWindow, playbackPosition);
+        player.prepare();
 
         PlayerView playerView = audioViewBinding.mrPlayer;
         playerView.setPlayer(player);
@@ -75,13 +90,12 @@ public class MrMainActivity extends AppCompatActivity {
         addRemoveCollectionButton.setImageDrawable(addToCollection);
         addRemoveCollectionButton.setOnClickListener(v ->
         {
-            if (addRemoveCollectionButton.getDrawable() == addToCollection) {
-                addRemoveCollectionButton.setImageDrawable(removeFromCollection);
-                removeFromCollection.start();
-            } else {
-                addRemoveCollectionButton.setImageDrawable(addToCollection);
-                addToCollection.start();
-            }
+            AnimatedVectorDrawableCompat drawable = (showingAddToCollection) ? addToCollection :
+                removeFromCollection;
+
+            addRemoveCollectionButton.setImageDrawable(drawable);
+            drawable.start();
+            showingAddToCollection = !showingAddToCollection;
         });
 
         ImageButton searchCollection =
@@ -94,8 +108,7 @@ public class MrMainActivity extends AppCompatActivity {
         });
 
         setUpTags(
-            binding.getRoot(),
-
+            audioViewBinding.getRoot(),
             audioViewBinding.mrTags,
             audio.getTags()
         );
@@ -162,15 +175,5 @@ public class MrMainActivity extends AppCompatActivity {
 
     private void initializePlayer() {
         player = new SimpleExoPlayer.Builder(this).build();
-
-        updateViewsFromAudio(Audio.getTestAudio());
-
-        MediaItem mediaItem = MediaItem.fromUri("https://dl.espressif" +
-            ".com/dl/audio/ff-16b-1c-44100hz.m4a");
-        player.setMediaItem(mediaItem);
-
-        player.setPlayWhenReady(playWhenReady);
-        player.seekTo(currentWindow, playbackPosition);
-        player.prepare();
     }
 }

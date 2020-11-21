@@ -7,6 +7,16 @@
     android:background="@drawable/mr_background_gradient_reversed"
     tools:context=".MrMainActivity">
 
+    <ProgressBar
+        android:id="@+id/mr_progress_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ViewStub
         android:id="@+id/mr_audio_view_stub"
         android:layout_width="0dp"
