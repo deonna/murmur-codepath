@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="gradient_background_plum">#240040</color>
+    <color name="gradient_background_plum_center">#260241</color>
+    <color name="gradient_background_red">#C11E38</color>
+
+    <color name="artist_tag_background">#529F1919</color>
 </resources>

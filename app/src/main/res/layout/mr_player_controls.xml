@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/black">
+
+    <ImageButton
+        android:id="@id/exo_rew"
+        style="@style/MurmurMediaButton.Rewind"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/exo_play_pause_placeholder"
+        app:layout_constraintEnd_toStartOf="@+id/exo_play_pause_placeholder"
+        app:layout_constraintTop_toTopOf="@id/exo_play_pause_placeholder" />
+
+    <ImageButton
+        android:id="@+id/exo_play_pause_placeholder"
+        style="@style/MurmurMediaButton.Play"
+        android:layout_marginTop="32dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@id/exo_play"
+        style="@style/MurmurMediaButton.Play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@id/exo_pause"
+        style="@style/MurmurMediaButton.Pause"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@id/exo_ffwd"
+        style="@style/MurmurMediaButton.FastForward"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/exo_play_pause_placeholder"
+        app:layout_constraintStart_toEndOf="@id/exo_play_pause_placeholder"
+        app:layout_constraintTop_toTopOf="@id/exo_play_pause_placeholder" />
+
+    <TextView
+        android:id="@id/exo_position"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/exo_progress"
+        app:layout_constraintTop_toBottomOf="@id/exo_progress"
+        tools:text="16:45" />
+
+    <com.google.android.exoplayer2.ui.DefaultTimeBar
+        android:id="@id/exo_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@id/exo_play_pause_placeholder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@id/exo_duration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/exo_progress"
+        app:layout_constraintTop_toBottomOf="@id/exo_progress"
+        tools:text="23:45" />
+
+    <ImageButton
+        android:id="@+id/mr_add_remove_collection"
+        style="@style/MurmurMediaButton"
+        app:layout_constraintBottom_toBottomOf="@id/exo_play_pause_placeholder"
+        app:layout_constraintStart_toStartOf="@+id/exo_progress"
+        app:layout_constraintTop_toTopOf="@id/exo_play_pause_placeholder"
+        tools:src="@drawable/mr_add_to_collection" />
+
+    <ImageButton
+        android:id="@+id/mr_search_collection"
+        style="@style/MurmurMediaButton"
+        android:src="@drawable/mr_search_collection"
+        app:layout_constraintBottom_toBottomOf="@id/exo_play_pause_placeholder"
+        app:layout_constraintEnd_toEndOf="@id/exo_progress"
+        app:layout_constraintTop_toTopOf="@id/exo_play_pause_placeholder" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

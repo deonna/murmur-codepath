@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@drawable/mr_background_gradient_reversed"
+    tools:context=".MrMainActivity">
+
+    <ImageView
+        android:id="@+id/mr_title_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        android:foreground="#59000000"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mr_background_redwoods"
+        app:layout_constraintBottom_toTopOf="@id/mr_title_background_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/mr_tags"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:flow_horizontalGap="10dp"
+        app:flow_horizontalStyle="packed"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toTopOf="@id/mr_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mr_title_background_guideline"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/mr_audio_icon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="20dp"
+        android:src="@drawable/mr_microphone"
+        app:layout_constraintBottom_toBottomOf="@id/mr_title_background_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/mr_audio_author"
+        style="@style/MurmurArtistTag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/mr_audio_icon"
+        app:layout_constraintStart_toEndOf="@id/mr_audio_icon"
+        app:layout_constraintTop_toTopOf="@id/mr_audio_icon"
+        tools:text="JustAnotherVoiceInTheCloud"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/mr_image_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:alpha=".5"
+        android:elevation="20dp"
+        android:fontFamily="@font/josefin_sans"
+        android:textColor="@color/white"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@id/mr_title_background_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Jenny Mills via Unsplash" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mr_title_background_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".33" />
+
+    <TextView
+        android:id="@+id/mr_title"
+        style="@style/MurmurAutosizingHeader"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:elevation="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/mr_audio_author"
+        app:layout_constraintEnd_toEndOf="@id/mr_title_background"
+        app:layout_constraintStart_toStartOf="@id/mr_title_background"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="The Strange Case of Dr. Jekyll and Mr. Hyde"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/mr_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/josefin_sans"
+        android:lineSpacingMultiplier="1.3"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mr_tags"
+        tools:text="Dr Jekyll and Mr Hyde is about the complexities of science and the duplicity of human nature. Dr Jekyll is a well-respected and intelligent scientist who meddles with the darker side of science."
+        tools:visibility="visible" />
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/mr_player"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="80dp"
+        android:paddingStart="0dp"
+        android:paddingLeft="0dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:progress="50"
+        app:controller_layout_id="@layout/mr_player_controls"
+        app:hide_on_touch="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:player_layout_id="@layout/mr_player_view"
+        app:show_timeout="0"
+        app:use_artwork="false"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>
