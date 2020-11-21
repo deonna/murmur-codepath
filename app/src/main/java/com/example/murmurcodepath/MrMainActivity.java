@@ -60,8 +60,6 @@ public class MrMainActivity extends AppCompatActivity {
     }
 
     private void updateViewsFromAudio(Audio audio) {
-        player.setMediaItem(MediaItem.fromUri(audio.getPlayableAudioLink()));
-
         ViewExtensions.fadeOut(binding.mrProgressSpinner);
         ViewExtensions.fadeIn(binding.mrAudioViewStub);
 
@@ -87,25 +85,29 @@ public class MrMainActivity extends AppCompatActivity {
         ImageButton addRemoveCollectionButton =
             audioViewBinding.mrPlayer.findViewById(R.id.mr_add_remove_collection);
 
-        addRemoveCollectionButton.setImageDrawable(addToCollection);
-        addRemoveCollectionButton.setOnClickListener(v ->
-        {
-            AnimatedVectorDrawableCompat drawable = (showingAddToCollection) ? addToCollection :
-                removeFromCollection;
+        if (addRemoveCollectionButton != null) {
+            addRemoveCollectionButton.setImageDrawable(addToCollection);
+            addRemoveCollectionButton.setOnClickListener(v ->
+            {
+                AnimatedVectorDrawableCompat drawable = (showingAddToCollection) ? addToCollection :
+                    removeFromCollection;
 
-            addRemoveCollectionButton.setImageDrawable(drawable);
-            drawable.start();
-            showingAddToCollection = !showingAddToCollection;
-        });
+                addRemoveCollectionButton.setImageDrawable(drawable);
+                drawable.start();
+                showingAddToCollection = !showingAddToCollection;
+            });
+        }
 
         ImageButton searchCollection =
             audioViewBinding.mrPlayer.findViewById(R.id.mr_search_collection);
 
-        searchCollection.setOnClickListener(v ->
-        {
+        if (searchCollection != null) {
+            searchCollection.setOnClickListener(v ->
+            {
 //            val intent = Intent(this @MrMainActivity,MrCollectionActivity:: class.java)
 //            startActivity(intent)
-        });
+            });
+        }
 
         setUpTags(
             audioViewBinding.getRoot(),
