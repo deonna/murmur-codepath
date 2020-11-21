@@ -1,5 +1,6 @@
 package com.example.murmurcodepath;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +67,7 @@ public class MrMainActivity extends AppCompatActivity {
         MrAudioViewBinding audioViewBinding =
             MrAudioViewBinding.bind(findViewById(R.id.mr_audio_view));
 
-        MediaItem mediaItem = MediaItem.fromUri(audio.getPlayableAudioLink());
+        MediaItem mediaItem = MediaItem.fromUri(Uri.parse(audio.getPlayableAudioLink()));
         player.setMediaItem(mediaItem);
         player.setPlayWhenReady(playWhenReady);
         player.seekTo(currentWindow, playbackPosition);
