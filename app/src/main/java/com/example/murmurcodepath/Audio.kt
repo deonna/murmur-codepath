@@ -18,7 +18,6 @@ data class Audio(
         tags.isEmpty()
 
     companion object {
-        @JvmStatic
         fun getTestAudio(): Audio {
             return Audio(
                 artistName = "JustAnotherVoiceInTheCloud",
