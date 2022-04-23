@@ -10,11 +10,16 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.MurmurCodePath.LauncherScreen">
+        android:supportsRtl="true">
         <activity
             android:name=".MrMainActivity"
-            android:exported="true">
+            android:exported="false" />
+
+        <activity
+            android:name=".MrSplashActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.MurmurCodePath.LauncherScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

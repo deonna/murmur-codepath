@@ -16,7 +16,7 @@
     </style>
 
     <style name="Theme.MurmurCodePath.LauncherScreen">
-        <item name="android:windowBackground">@drawable/mr_launcher_screen</item>
+        <item name="android:background">@drawable/mr_launcher_screen</item>
     </style>
 
 </resources>

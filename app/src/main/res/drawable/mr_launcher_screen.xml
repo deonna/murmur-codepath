@@ -10,4 +10,5 @@
     <item
         android:drawable="@drawable/mr_murmur_logo"
         android:gravity="center" />
+
 </layer-list>
